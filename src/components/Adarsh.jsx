@@ -19,8 +19,15 @@ const Adarsh = () => {
 
     setIsLoading(true); // Show loading spinner
 
-    // Get current date
-    const currentDate = new Date().toLocaleDateString(); // Format as "MM/DD/YYYY" or "DD/MM/YYYY" depending on locale
+    // Format date with an apostrophe prefix to ensure it appears as text in Google Sheets
+    const dateObj = new Date();
+    const currentDate = `'${String(dateObj.getDate()).padStart(
+      2,
+      "0"
+    )}-${String(dateObj.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${dateObj.getFullYear()}`;
 
     // Prepare email parameters
     const emailParams = {
@@ -28,7 +35,7 @@ const Adarsh = () => {
       to_name: "Admin",
       phone: mobile,
       email: email,
-      inquiry_date: currentDate, // Automatically generated date
+      inquiry_date: currentDate, // Formatted date as text
       message: "Here is the inquiry information",
       subject: "[IMPORTANT] Inquiry Information",
     };
@@ -36,12 +43,12 @@ const Adarsh = () => {
     try {
       // Send data to the webhook
       await axios.post(
-        "https://hook.eu2.make.com/6irg7ga4tqbtvzvs14axtc11qs7mdk6i",
+        "https://hook.eu2.make.com/w9jnca0ki1fpup1ebeuiw0p5q5o82l5f",
         {
           name: name,
           email: email,
           phone: mobile,
-          inquiry_date: currentDate, // Automatically generated date
+          inquiry_date: currentDate, // Send date as text with an apostrophe prefix
         }
       );
 
@@ -64,12 +71,12 @@ const Adarsh = () => {
           }, 3000);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error sending email:", error);
           alert("Error sending email.");
           setIsLoading(false); // Hide loading spinner
         });
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error submitting the form:", error);
       alert("Error submitting the form.");
       setIsLoading(false); // Hide loading spinner
     }
