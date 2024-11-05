@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdLocationPin } from "react-icons/md";
-import image from "../assets/image.png";
+import image from "../assets/image.webp";
 import axios from "axios";
 import emailjs from "emailjs-com";
 
@@ -85,7 +85,7 @@ const Adarsh = () => {
   return (
     <div>
       <h1 className="text-2xl font-semibold text-gray-800 mb-4">
-        Jaipuria Towers
+        Cocoon By Jaipuria Towers
       </h1>
       <p className="flex items-center text-sm text-gray-600 md:mb-6 mb-3 gap-2 capitalize">
         <MdLocationPin className="text-red-500" size={40} /> OUTER RING ROAD,

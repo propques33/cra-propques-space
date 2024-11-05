@@ -1,6 +1,6 @@
 import React from "react";
-import image from "../assets/image.png"; 
-import imagew from "../assets/imagew.png"; 
+import image from "../assets/image.webp"; 
+import imagew from "../assets/imagew.webp"; 
 
 const ConsultantCard = () => {
   const consultants = [

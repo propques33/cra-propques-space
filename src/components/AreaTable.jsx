@@ -4,7 +4,7 @@ const RentalProperties = () => {
   const data = [
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "BASEMENT FLOOR",
       builtup: "5413.33",
       carpet: "5139.69",
@@ -12,7 +12,7 @@ const RentalProperties = () => {
     },
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "GROUND FLOOR",
       builtup: "7827.4",
       carpet: "5247.73",
@@ -20,7 +20,7 @@ const RentalProperties = () => {
     },
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "1ST FLOOR",
       builtup: "7199.33",
       carpet: "7031.69",
@@ -28,7 +28,7 @@ const RentalProperties = () => {
     },
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "2ND FLOOR",
       builtup: "5872.18",
       carpet: "5635.4",
@@ -36,7 +36,7 @@ const RentalProperties = () => {
     },
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "3RD FLOOR",
       builtup: "7152.14",
       carpet: "6908.39",
@@ -44,7 +44,7 @@ const RentalProperties = () => {
     },
     {
       category: "Office",
-      building: "Jaipuria Towers",
+      building: "Cocoon By Jaipuria Towers",
       floor: "TERRACE FLOOR",
       builtup: "6369.42",
       carpet: "6369.42",
@@ -97,22 +97,22 @@ const RentalProperties = () => {
           <tbody>
             {data.map((item, index) => (
               <tr key={index} className="border">
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.category}
                 </td>
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.building}
                 </td>
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.floor}
                 </td>
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.builtup}
                 </td>
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.carpet}
                 </td>
-                <td className="border md:px-4 py-2 text-xs md:text-sm">
+                <td className="border md:px-4 py-2 text-xs text-center md:text-sm">
                   {item.rentable}
                 </td>
               </tr>
