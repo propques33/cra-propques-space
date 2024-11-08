@@ -3,6 +3,7 @@ import { MdLocationPin } from "react-icons/md";
 import image from "../assets/image.webp";
 import axios from "axios";
 import emailjs from "emailjs-com";
+import { FaCheckCircle } from "react-icons/fa";
 
 const Adarsh = () => {
   // State hooks for form inputs
@@ -12,11 +13,53 @@ const Adarsh = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isReadMore, setIsReadMore] = useState(false); // State to toggle Read More
+  const [otp, setOtp] = useState(""); // State for OTP input
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [generatedOtp, setGeneratedOtp] = useState(null);
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
+  // Handle form submission to send OTP
+  const handleSendOtp = async (e) => {
     e.preventDefault();
 
+    // Generate a random 6-digit OTP
+    const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    setGeneratedOtp(generatedOtp);
+
+    // Prepare email parameters for sending OTP
+    const otpParams = {
+      to_name: name,
+      to_email: email,
+      message: `Hello ${name},\n\nYour OTP for verification is: ${generatedOtp}`,
+      subject: "OTP Verification for Appointment",
+    };
+
+    try {
+      // Send OTP email using EmailJS
+      await emailjs.send(
+        "service_vcnub3o",
+        "template_19bo1qg", // Ensure you create a new template for OTP in EmailJS
+        otpParams,
+        "KM6kJPymVVzg7Aim1"
+      );
+      setShowOtpModal(true); // Show OTP modal
+    } catch (error) {
+      console.error("Error sending OTP:", error);
+      alert("Error sending OTP. Please try again.");
+    }
+  };
+
+  // Handle OTP verification
+  const handleVerifyOtp = () => {
+    if (otp === generatedOtp) {
+      handleSubmit(); // Proceed with form submission
+      setShowOtpModal(false); // Close the modal
+    } else {
+      alert("Invalid OTP. Please try again.");
+    }
+  };
+  
+  // Handle form submission
+  const handleSubmit = async (e) => {
     setIsLoading(true); // Show loading spinner
 
     // Format date with an apostrophe prefix to ensure it appears as text in Google Sheets
@@ -66,9 +109,9 @@ const Adarsh = () => {
           setName("");
           setEmail("");
           setMobile("");
-          setTimeout(() => {
-            setIsSuccess(false); // Hide success popup after 3 seconds
-          }, 3000);
+          // setTimeout(() => {
+          //   setIsSuccess(false); // Hide success popup after 3 seconds
+          // }, 3000);
         })
         .catch((error) => {
           console.error("Error sending email:", error);
@@ -120,8 +163,22 @@ const Adarsh = () => {
           {isReadMore ? "Read Less" : "Read More"}
         </span>
       </h1>
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {isSuccess ?(
+        <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-lg border border-gray-200">
+          <FaCheckCircle className="text-green-500 text-5xl mb-4" />
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Thank You!</h1>
+          <p className="text-lg text-gray-600 mb-4 text-center">
+            Your form has been submitted successfully. We have received your details and will get back to you shortly.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-blue-500 text-white px-5 py-2 rounded shadow hover:bg-blue-600 transition duration-300"
+          >
+            Refresh Page
+          </button>
+        </div>
+      ): (
+      <form onSubmit={handleSendOtp} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="Enter Your Name"
@@ -154,10 +211,39 @@ const Adarsh = () => {
           {isLoading ? "Submitting..." : "Make an appointment"}
         </button>
       </form>
+      )}
 
-      {isSuccess && (
+      {/* {isSuccess && (
         <div className="text-blue-600 mt-4">
           Appointment request successfully submitted!
+        </div>
+      )} */}
+
+      {/* OTP Modal */}
+      {showOtpModal && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+          <div className="bg-white p-6 rounded shadow-md w-80">
+            <h2 className="text-lg font-medium mb-4 text-center">Verify Email</h2>
+            <input
+              type="text"
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleVerifyOtp}
+              className="bg-green-500 text-white px-4 py-2 w-full shadow hover:bg-green-600 transition duration-300"
+            >
+              Verify OTP
+            </button>
+            <button
+              onClick={() => setShowOtpModal(false)}
+              className=" text-white bg-red-400 mt-3 px-4 py-2 w-full shadow hover:bg-red-600 transition duration-300"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
     </div>
