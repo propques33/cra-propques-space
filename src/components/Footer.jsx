@@ -92,14 +92,19 @@ const Footer = () => {
               </button>
             </form>
             <div className="flex gap-3 mt-4">
-              <FaInstagram
-                size={24}
-                className="text-[#2362AB] hover:text-blue-600 cursor-pointer"
-              />
-              <FaLinkedin
-                size={24}
-                className="text-[#2362AB] hover:text-blue-600 cursor-pointer"
-              />
+              <Link to="https://www.instagram.com/propques_services/">
+                <FaInstagram
+                  size={24}
+                  className="text-[#2362AB] hover:text-blue-600 cursor-pointer"
+                />
+              </Link>
+
+              <Link to="https://www.linkedin.com/company/propques/posts/?feedView=all">
+                <FaLinkedin
+                  size={24}
+                  className="text-[#2362AB] hover:text-blue-600 cursor-pointer"
+                />
+              </Link>
             </div>
           </div>
         </div>
