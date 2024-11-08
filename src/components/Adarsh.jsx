@@ -4,8 +4,10 @@ import image from "../assets/image.webp";
 import axios from "axios";
 import emailjs from "emailjs-com";
 import { FaCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Adarsh = () => {
+  const navigate = useNavigate();
   // State hooks for form inputs
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -118,6 +120,9 @@ const Adarsh = () => {
           alert("Error sending email.");
           setIsLoading(false); // Hide loading spinner
         });
+
+        // Redirect to the Thank You page upon successful submission
+      navigate("/thankyou");
     } catch (error) {
       console.error("Error submitting the form:", error);
       alert("Error submitting the form.");
@@ -163,21 +168,7 @@ const Adarsh = () => {
           {isReadMore ? "Read Less" : "Read More"}
         </span>
       </h1>
-      {isSuccess ?(
-        <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-lg border border-gray-200">
-          <FaCheckCircle className="text-green-500 text-5xl mb-4" />
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Thank You!</h1>
-          <p className="text-lg text-gray-600 mb-4 text-center">
-            Your form has been submitted successfully. We have received your details and will get back to you shortly.
-          </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-4 bg-blue-500 text-white px-5 py-2 rounded shadow hover:bg-blue-600 transition duration-300"
-          >
-            Refresh Page
-          </button>
-        </div>
-      ): (
+      
       <form onSubmit={handleSendOtp} className="flex flex-col gap-4">
         <input
           type="text"
@@ -211,7 +202,6 @@ const Adarsh = () => {
           {isLoading ? "Submitting..." : "Make an appointment"}
         </button>
       </form>
-      )}
 
       {/* {isSuccess && (
         <div className="text-blue-600 mt-4">
