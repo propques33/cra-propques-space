@@ -52,7 +52,7 @@ const App = () => {
             </>
           }
         />
-        <Route path="/thankyou" element={<ThankYou />} />
+        <Route path="/thank-you" element={<ThankYou />} />
       </Routes>
       <Footer />
     </div>
