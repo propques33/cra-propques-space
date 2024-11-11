@@ -122,7 +122,7 @@ const Adarsh = () => {
         });
 
         // Redirect to the Thank You page upon successful submission
-      navigate("/thankyou");
+      navigate("/thank-you");
     } catch (error) {
       console.error("Error submitting the form:", error);
       alert("Error submitting the form.");
