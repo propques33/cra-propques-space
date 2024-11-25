@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -7,15 +7,45 @@ import Adarsh from "./components/Adarsh";
 import ThankYou from "./components/ThankYou";
 
 const App = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Controls popup visibility
+  const [animatePopup, setAnimatePopup] = useState(false); // Controls animation
+  const [isMobile, setIsMobile] = useState(false); // Detect if the device is mobile
 
-  const handlePopupOpen = () => {
-    setIsPopupOpen(true);
+  // Detect if the device is mobile
+  const checkIfMobile = () => {
+    const isMobileDevice = window.innerWidth <= 768; // Adjust the breakpoint if needed
+    setIsMobile(isMobileDevice);
   };
 
   const handlePopupClose = () => {
-    setIsPopupOpen(false);
+    setAnimatePopup(true); // Start closing animation
+    setTimeout(() => {
+      setIsPopupOpen(false); // Close the popup
+      setAnimatePopup(false); // Reset animation state
+      // Reopen the popup after 7 seconds
+      setTimeout(() => {
+        setIsPopupOpen(true);
+      }, 5000);
+    }, 1500); // Matches animation duration
   };
+
+  useEffect(() => {
+    // Check if the device is mobile on initial load
+    checkIfMobile();
+
+    // Add an event listener for window resize
+    window.addEventListener("resize", checkIfMobile);
+
+    // Automatically open the popup on page load for mobile devices
+    if (isMobile) {
+      setIsPopupOpen(true);
+    }
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, [isMobile]);
 
   return (
     <div className="md:w-full w-[100vw]">
@@ -25,21 +55,20 @@ const App = () => {
           path="/"
           element={
             <>
-              <div className="fixed bottom-4 right-4 md:hidden">
-                <button
-                  onClick={handlePopupOpen}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
+              {isPopupOpen && isMobile && (
+                <div
+                  className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10000000] transition-all duration-1500 ${
+                    animatePopup ? "opacity-0 scale-90" : "opacity-100 scale-100"
+                  }`}
                 >
-                  Open Appointment Form
-                </button>
-              </div>
-
-              {isPopupOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10000000] ">
-                  <div className="bg-white p-6 rounded-lg shadow-lg w-[90vw] max-w-md">
+                  <div
+                    className={`bg-white p-6 rounded-lg shadow-lg w-[90vw] max-w-md transform transition-all duration-1500 ${
+                      animatePopup ? "opacity-0 scale-90" : "opacity-100 scale-100"
+                    }`}
+                  >
                     <button
                       onClick={handlePopupClose}
-                      className="text-red-500 font-semibold w-full text-end "
+                      className="text-red-500 font-semibold w-full text-end"
                     >
                       Close
                     </button>

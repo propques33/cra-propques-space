@@ -38,10 +38,11 @@ const Adarsh = () => {
     try {
       // Send OTP email using EmailJS
       await emailjs.send(
-        "service_vcnub3o",
-        "template_19bo1qg", // Ensure you create a new template for OTP in EmailJS
+       "service_v6g9oma",
+
+        "template_80pp0hf",
         otpParams,
-        "KM6kJPymVVzg7Aim1"
+        "Cc40gM85ddXyCOaHD"
       );
       setShowOtpModal(true); // Show OTP modal
     } catch (error) {
@@ -100,10 +101,10 @@ const Adarsh = () => {
       // Send email using EmailJS
       emailjs
         .send(
-          "service_vcnub3o",
-          "template_wkjd0zu",
+          "service_v6g9oma",
+          "template_jkasb3l",
           emailParams,
-          "KM6kJPymVVzg7Aim1"
+          "Cc40gM85ddXyCOaHD"
         )
         .then((response) => {
           setIsLoading(false); // Hide loading spinner

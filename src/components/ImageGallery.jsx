@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import { useSwipeable } from "react-swipeable"; // Import swipeable
 import img from "../assets/img.webp";
 import img2 from "../assets/img2.webp";
 import img3 from "../assets/img3.webp";
@@ -33,57 +33,28 @@ const ImageCarousel = ({ images }) => {
     setCurrentIndex(index);
   };
 
-  // Scroll Thumbnails Left
-  const scrollLeft = () => {
-    thumbnailRef.current.scrollBy({
-      left: -100,
-      behavior: "smooth",
-    });
-  };
-
-  // Scroll Thumbnails Right
-  const scrollRight = () => {
-    thumbnailRef.current.scrollBy({
-      left: 100,
-      behavior: "smooth",
-    });
-  };
+  // Swipeable handlers for thumbnails
+  const thumbnailSwipeHandlers = useSwipeable({
+    onSwipedLeft: () => thumbnailRef.current.scrollBy({ left: 100, behavior: "smooth" }), // Swipe left to scroll thumbnails right
+    onSwipedRight: () => thumbnailRef.current.scrollBy({ left: -100, behavior: "smooth" }), // Swipe right to scroll thumbnails left
+  });
 
   return (
-    <div className="w-full flex flex-col items-center md:w-full">
+    <div className="w-full flex flex-col items-center md:w-full md:mt-0 mt-0">
       {/* Main Image Display */}
       <div className="relative w-full flex justify-center">
         <img
           src={images[currentIndex].url}
           alt={`Slide ${currentIndex}`}
-          className="w-full h-52 sm:h-64 md:h-[60vh] lg:h-[75vh] object-cover"
+          className="w-full h-80 sm:h-80 md:h-[60vh] lg:h-[75vh] object-cover "
         />
-        {/* Left Arrow */}
-        {/* <button
-          className="absolute top-1/2 left-2 md:left-4 pl-4  text-lg sm:text-xl md:text-2xl lg:text-3xl text-white bg-black/50 rounded-full p-2 transform -translate-y-1/2"
-          onClick={prevSlide}
-        >
-          <MdArrowBackIos />
-        </button> */}
-        {/* Right Arrow */}
-        {/* <button
-          className="absolute top-1/2 right-2 md:right-4 text-lg sm:text-xl md:text-2xl lg:text-3xl text-white bg-black/50 rounded-full p-2 transform -translate-y-1/2"
-          onClick={nextSlide}
-        >
-          <MdArrowForwardIos />
-        </button> */}
       </div>
 
       {/* Thumbnails */}
-      <div className="relative w-full flex items-center mt-2 sm:mt-4">
-        {/* Left Thumbnail Arrow */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 pl-2 text-xl text-gray-600 bg-white py-1 rounded-full shadow-md md:hidden z-10"
-        >
-          <MdArrowBackIos />
-        </button>
-
+      <div
+        className="relative w-full flex items-center mt-2 sm:mt-4 overflow-hidden"
+        {...thumbnailSwipeHandlers} // Attach swipe handlers
+      >
         <div
           ref={thumbnailRef}
           className="flex overflow-x-hidden space-x-1 sm:space-x-2 px-8"
@@ -101,14 +72,6 @@ const ImageCarousel = ({ images }) => {
             />
           ))}
         </div>
-
-        {/* Right Thumbnail Arrow */}
-        <button
-          onClick={scrollRight}
-          className="absolute right-0 text-xl text-gray-600 bg-white p-1 rounded-full shadow-md md:hidden z-10"
-        >
-          <MdArrowForwardIos />
-        </button>
       </div>
     </div>
   );
