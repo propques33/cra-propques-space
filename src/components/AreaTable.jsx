@@ -68,9 +68,9 @@ const RentalProperties = () => {
 
   return (
     <div className="container md:w-full w-[100vw] px-2 md:px-0 mt-6">
-      <h2 className="text-xl md:text-2xl font-semibold mb-4">
-        Rental Properties
-      </h2>
+      <h1 className="text-xl md:text-2xl font-semibold mb-4 capitalize">
+      Info about the entire building 
+      </h1>
       {/* Responsive Table Container */}
       <div className="">
         <table className=" bg-white border">

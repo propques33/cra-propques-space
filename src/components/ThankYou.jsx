@@ -6,6 +6,20 @@ import { BsCheckCircle } from "react-icons/bs";
 const ThankYou = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Ensure scrolling to the top of the document when the component is mounted
+    window.scrollTo({
+      top: 0,
+      behavior: "auto", // You can use "auto" for instant scroll
+    });
+
+    // As a fallback, scroll the root element
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   // Initialize GTM
   useEffect(() => {
     TagManager.initialize({

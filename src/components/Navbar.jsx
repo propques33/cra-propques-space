@@ -36,7 +36,7 @@ const Navbar = () => {
         {/* Logo in the center */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className="text-white text-2xl font-bold">
-            <img src={logo} alt="Logo" className=" " />
+            <img src={logo} alt="Logo" className=" " loading="lazy"  />
           </Link>
         </div>
 

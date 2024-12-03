@@ -10,11 +10,7 @@ import { MdLocalMall } from "react-icons/md";
 
 const AmenitiesMap = () => {
   // State to track the active tab
-  const [activeTab, setActiveTab] = useState("Transportation");
-
-  // State to track the active map URL
-  const [activeMapUrl, setActiveMapUrl] = useState("");
-
+ 
   const transportation = [
     {
       name: "Silk Board Metro Station",
@@ -69,6 +65,14 @@ const AmenitiesMap = () => {
     },
   ];
 
+  const [activeTab, setActiveTab] = useState("Transportation");
+
+  // State to track the active map URL
+  const [activeMapUrl, setActiveMapUrl] = useState(
+    transportation[0]?.map || "" // Default map URL
+  );
+
+
   // Handle tab change and set the map URL
   const handleTabChange = (tabName, defaultMapUrl) => {
     setActiveTab(tabName);
@@ -78,6 +82,9 @@ const AmenitiesMap = () => {
   return (
     <div className="container px-4 md:px-0 mt-6">
       {/* Tab Buttons */}
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 capitalize">
+      Location Advantages
+      </h2>
       <div className="flex flex-wrap md:text-sm text-sm justify-between border-b ">
         <button
           onClick={() =>

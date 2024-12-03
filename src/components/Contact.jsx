@@ -21,6 +21,7 @@ const Contact = () => {
           <img
             src={image}
             alt="Person"
+            loading="lazy" 
             className="w-16 h-16 rounded-full shadow-md"
           />
           <div>

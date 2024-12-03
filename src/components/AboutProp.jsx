@@ -10,24 +10,19 @@ const AboutProperty = () => {
   return (
     <div className="container px-4 md:px-0 mt-6 md:w-full w-[100vw]">
       <h2 className="text-xl md:text-2xl font-semibold  flex gap-2 ">
-        About this Property <DownloadButton />
+        Why Choose Cocoon By Jaipuria? <DownloadButton />
       </h2>
-      <p className="text-xs md:text-sm leading-relaxed text-justify my-4">
-        This commercial office space in BTM Layout, strategically positioned
-        near Outer Ring Road and Silk Board Junction, is a prime leasing
-        opportunity for businesses looking for a high-demand location. The
-        property is designed with a low-rise structure comprising one basement,
-        a ground floor, and three upper floors, along with a terrace featuring a
-        pantry. With a total built-up area of 39,834 sq ft, the building
-        provides ample space for multiple office setups, making it ideal for
-        companies in the IT, tech, or coworking sectors.
+      <p className="text-xs md:text-base leading-relaxed text-justify my-4">
+      Looking for a premium building for lease in BTM Layout to establish your company headquarters, coworking space, or retail showroom? 
+      <br />
+      Our strategically located property offers the perfect space for businesses aiming for growth and excellence. Designed to cater to a range of needs, this versatile building is ideal for corporates, coliving spaces, hospitals, gyms, banks, and more. Secure your spot in one of the most sought-after areas for long-term lease and take your business to the next level.
       </p>
 
       {showMore && (
         <>
           <p className="">Key amenities include:</p>
 
-          <ul className="list-disc ml-4 md:ml-8 mt-4 space-y-4 text-justify ">
+          <ul className="list-disc ml-4 md:ml-8 mt- space-y-4 text-justify ">
             <li className="text-xs md:text-sm">
               <span className="font-semibold">
                 24 dedicated car parking spaces

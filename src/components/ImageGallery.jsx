@@ -43,11 +43,14 @@ const ImageCarousel = ({ images }) => {
     <div className="w-full flex flex-col items-center md:w-full md:mt-0 mt-0">
       {/* Main Image Display */}
       <div className="relative w-full flex justify-center">
-        <img
-          src={images[currentIndex].url}
-          alt={`Slide ${currentIndex}`}
-          className="w-full h-80 sm:h-80 md:h-[60vh] lg:h-[75vh] object-cover "
-        />
+      <img
+  src={images[currentIndex].url}
+  alt={`Slide ${currentIndex}`}
+  className="w-full h-80 sm:h-80 md:h-[60vh] lg:h-[75vh] object-cover"
+  height="450" // Example height in pixels
+  width="800"  // Example width in pixels
+/>
+
       </div>
 
       {/* Thumbnails */}
@@ -60,17 +63,21 @@ const ImageCarousel = ({ images }) => {
           className="flex overflow-x-hidden space-x-1 sm:space-x-2 px-8"
           style={{ scrollSnapType: "x mandatory" }}
         >
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image.url}
-              alt={`Thumbnail ${index}`}
-              className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-md border-2 ${
-                currentIndex === index ? "border-green-500" : "border-gray-300"
-              } cursor-pointer transition duration-300 ease-in-out`}
-              onClick={() => goToSlide(index)}
-            />
-          ))}
+         {images.map((image, index) => (
+  <img
+    key={index}
+    src={image.url}
+    alt={`Thumbnail Image ${index}`}
+    loading="lazy" 
+    className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-md border-2 ${
+      currentIndex === index ? "border-green-500" : "border-gray-300"
+    } cursor-pointer transition duration-300 ease-in-out`}
+    width="40" // Matches the smallest size (w-10)
+    height="40" // Matches the smallest size (h-10)
+    onClick={() => goToSlide(index)}
+  />
+))}
+
         </div>
       </div>
     </div>
@@ -80,7 +87,7 @@ const ImageCarousel = ({ images }) => {
 // Parent Component with Filtering Functionality
 const ImageGallery = () => {
   const allImages = [
-    { url: img3, category: "architecture" },
+    // { url: img3, category: "architecture" },
     { url: img2, category: "nature" },
     { url: img, category: "architecture" },
     { url: img4, category: "architecture" },

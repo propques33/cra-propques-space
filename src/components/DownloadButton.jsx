@@ -17,9 +17,9 @@ const DownloadButton = () => {
   return (
     <button
       onClick={handleDownload}
-      className="md:text-base text-xs text-blue-500 flex items-center justify-center gap-1"
-    >
-      <MdFileDownload className="md:block hidden" />
+      className="md:text-base text-xs text-blue-500 flex items-center justify-center md:gap-1 "
+      >
+      <MdFileDownload className="-mr-2 md:mr-0 " size={30} />
       Property Brochure
     </button>
   );

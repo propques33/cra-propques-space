@@ -10,6 +10,7 @@ const App = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Controls popup visibility
   const [animatePopup, setAnimatePopup] = useState(false); // Controls animation
   const [isMobile, setIsMobile] = useState(false); // Detect if the device is mobile
+  const [hasPopupShown, setHasPopupShown] = useState(false); // Tracks if the popup was shown on load
 
   // Detect if the device is mobile
   const checkIfMobile = () => {
@@ -22,11 +23,11 @@ const App = () => {
     setTimeout(() => {
       setIsPopupOpen(false); // Close the popup
       setAnimatePopup(false); // Reset animation state
-      // Reopen the popup after 7 seconds
-      setTimeout(() => {
-        setIsPopupOpen(true);
-      }, 5000);
     }, 1500); // Matches animation duration
+  };
+
+  const handleBookAppointment = () => {
+    setIsPopupOpen(true); // Open popup on button click
   };
 
   useEffect(() => {
@@ -36,16 +37,20 @@ const App = () => {
     // Add an event listener for window resize
     window.addEventListener("resize", checkIfMobile);
 
-    // Automatically open the popup on page load for mobile devices
-    if (isMobile) {
-      setIsPopupOpen(true);
-    }
+    // Automatically open the popup on page load after 3 seconds if not already shown
+    const timer = setTimeout(() => {
+      if (!hasPopupShown) {
+        setIsPopupOpen(true);
+        setHasPopupShown(true); // Ensure popup is only shown once on load
+      }
+    }, 3000);
 
-    // Cleanup event listener on component unmount
+    // Cleanup event listener and timeout on component unmount
     return () => {
       window.removeEventListener("resize", checkIfMobile);
+      clearTimeout(timer);
     };
-  }, [isMobile]);
+  }, [hasPopupShown]);
 
   return (
     <div className="md:w-full w-[100vw]">
@@ -55,9 +60,10 @@ const App = () => {
           path="/"
           element={
             <>
-              {isPopupOpen && isMobile && (
+              {/* Popup Logic */}
+              {isPopupOpen && (
                 <div
-                  className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10000000] transition-all duration-1500 ${
+                  className={`fixed md:hidden  inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10000000] transition-all duration-1500 ${
                     animatePopup ? "opacity-0 scale-90" : "opacity-100 scale-100"
                   }`}
                 >
@@ -77,13 +83,23 @@ const App = () => {
                 </div>
               )}
 
+              {/* Info Section with Book Appointment Button */}
               <Info />
+             
             </>
           }
         />
         <Route path="/thank-you" element={<ThankYou />} />
       </Routes>
       <Footer />
+      <div className="flex md:hidden lg:hidden justify-center right-20 fixed  bottom-16">
+                <button
+                  onClick={handleBookAppointment}
+                  className="bg-blue-500 text-sm  absolute text-white px-6  py-2 rounded shadow   "
+                >
+                  Make an Appointment
+                </button>
+              </div>
     </div>
   );
 };

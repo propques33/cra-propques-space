@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+
+
 import ImageGallery from "./ImageGallery";
-import AreaTable from "./AreaTable";
-import AreaCalculationTable from "./AreaCalculationTable";
-import AmenitiesTable from "./AmenitiesTable";
 import AboutProp from "./AboutProp";
-import Consultants from "./Consultants";
-import QueryForm from "./QueryForm";
-import Adarsh from "./Adarsh";
+import AreaTable from "./AreaTable";
+
+const AreaCalculationTable = React.lazy(() => import('./AreaCalculationTable'));
+const AmenitiesTable = React.lazy(() => import('./AmenitiesTable'));
+const Consultants = React.lazy(() => import('./Consultants'));
+const Adarsh = React.lazy(() => import('./Adarsh'));
+
 const Info = () => {
  
 
@@ -14,9 +17,10 @@ const Info = () => {
     <div className="w-full flex md:px-8 gap-8">
       <div className="md:w-[60vw]">
         <ImageGallery />
+        <AboutProp />
+
         <AreaTable />
         <AreaCalculationTable />
-        <AboutProp />
         <AmenitiesTable />
         <Consultants />
       </div>

@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2 py-8 border-t-[3px] border-b-[3px]  border-blue-600">
           {/* Logo and Description */}
           <div className="col-span-1 flex flex-col items-center md:items-start">
-            <img src={logo} alt="Logo" className="h-16 mb-4" />
+            <img src={logo} alt="Logo" loading="lazy"  className="h-16 mb-4" />
             <p className="text-center md:text-left text-sm">
               Helping property owners, entrepreneurs, and real estate
               professionals transform and matchmake spaces into profitable
@@ -120,7 +120,7 @@ const Footer = () => {
               Terms and Conditions
             </Link>{" "}
             |
-            <a to="#" className="hover:underline ml-2">
+            <a href="/sitemap.xml" target="_blank"  className="hover:underline ml-2">
               Sitemap
             </a>{" "}
             |<span className="ml-2">Copyright © 2024</span>
