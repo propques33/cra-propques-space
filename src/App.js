@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Info from "./components/Info";
 import Adarsh from "./components/Adarsh";
 import ThankYou from "./components/ThankYou";
-
+import Whatsapp from './assets/WhatsApp.svg'
 const App = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Controls popup visibility
   const [animatePopup, setAnimatePopup] = useState(false); // Controls animation
@@ -53,7 +53,22 @@ const App = () => {
   }, [hasPopupShown]);
 
   return (
+    
     <div className="md:w-full w-[100vw]">
+      <a
+  href="https://wa.me/9044895895"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={Whatsapp}
+    alt="Click to Download"
+    className="fixed z-[100000000000] h-20 bottom-5 right-5 cursor-pointer"
+  />
+</a>
+
+  
+      
       <Navbar />
       <Routes>
         <Route
@@ -90,6 +105,7 @@ const App = () => {
           }
         />
         <Route path="/thank-you" element={<ThankYou />} />
+        
       </Routes>
       <Footer />
       <div className="flex md:hidden lg:hidden justify-center right-20 fixed  bottom-16">

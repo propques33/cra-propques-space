@@ -173,14 +173,23 @@ const Adarsh = () => {
           </select>
         </label>
         <button
-          type="submit"
-          className={`bg-blue-500 text-white px-4 py-2 shadow ${
-            isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
-          } transition duration-300`}
-          disabled={isLoading}
-        >
-          {isLoading ? "Submitting..." : "Make an Appointment"}
-        </button>
+  type="submit"
+  className={`bg-blue-500 text-white px-4 py-2 shadow ${
+    isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+  } transition duration-300`}
+  disabled={isLoading}
+  onClick={() => {
+    if (!isLoading) {
+      const downloadLink = document.createElement("a");
+      downloadLink.href = "https://drive.usercontent.google.com/u/0/uc?id=1Ihk5LQPdR48qBjySgBSzBZk3L-rV6eqC&export=download";
+      downloadLink.download = true; // Optional, forces download behavior
+      downloadLink.click();
+    }
+  }}
+>
+  {isLoading ? "Submitting..." : "Make an Appointment"}
+</button>
+
       </form>
 
       {isSuccess && (

@@ -28,22 +28,7 @@ const AmenitiesMap = () => {
     },
   ];
 
-  const food = [
-    {
-      name: "Absolute Barbecues",
-      distance: "1.2 km",
-      icon: <FaUtensils />,
-      location: "Absolute Barbecues, BTM Layout",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.865109059668!2d77.60210367507551!3d12.91639008739392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1503d4f6a7ab%3A0x845dde028247573b!2sAB&#39;s%20-%20Absolute%20Barbecues%20%7C%20BTM%20Layout%2C%20Bangalore!5e0!3m2!1sen!2sin!4v1729244799020!5m2!1sen!2sin",
-    },
-    {
-      name: "Meghana Foods",
-      distance: "1.5 km",
-      icon: <FaUtensils />,
-      location: "Meghana Foods, Bangalore",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248850.28372465458!2d77.44435659633145!3d12.953562416042976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15a1e3e9900d%3A0x207f5b22abdce680!2sMeghana%20Foods%20Jayanagar!5e0!3m2!1sen!2sin!4v1729244865947!5m2!1sen!2sin",
-    },
-  ];
+  
 
   const entertainment = [
     {
@@ -80,7 +65,7 @@ const AmenitiesMap = () => {
   };
 
   return (
-    <div className="container px-4 md:px-0 mt-6">
+    <div className="container px-2 md:px-0 mt-6">
       {/* Tab Buttons */}
       <h2 className="text-xl md:text-2xl font-semibold mb-4 capitalize">
       Location Advantages
@@ -98,16 +83,7 @@ const AmenitiesMap = () => {
         >
           Transportation
         </button>
-        <button
-          onClick={() => handleTabChange("Food", food[0].map)}
-          className={`md:px-4 md:py-2 mb-3 ${
-            activeTab === "Food"
-              ? "border-b-2 border-gray-700 text-gray-700"
-              : "text-gray-500"
-          }`}
-        >
-          Food
-        </button>
+       
         <button
           onClick={() => handleTabChange("Entertainment", entertainment[0].map)}
           className={`md:px-4 md:py-2 mb-3 ${
@@ -151,24 +127,6 @@ const AmenitiesMap = () => {
         </div>
       )}
 
-      {activeTab === "Food" && (
-        <div>
-          <h3 className="text-base md:text-lg font-semibold mb-2"></h3>
-          <ul>
-            {food.map((item, index) => (
-              <li
-                key={index}
-                className="flex items-center mb-2 cursor-pointer"
-                onClick={() => setActiveMapUrl(item.map)}
-              >
-                <span className="mr-2">{item.icon}</span>
-                <span>{item.name}</span>
-                <span className="ml-auto">{item.distance}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       {activeTab === "Entertainment" && (
         <div>

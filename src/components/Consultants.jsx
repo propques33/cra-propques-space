@@ -19,7 +19,7 @@ const ConsultantCard = () => {
   ];
 
   return (
-    <div className="container px-4 md:px-0 py-6">
+    <div className="container px-2 md:px-0 py-6">
       <h2 className="text-2xl font-semibold ">Leasing Experts</h2>
       <div className="flex flex-wrap  md:gap-8">
       {consultants.map((consultant) => (
