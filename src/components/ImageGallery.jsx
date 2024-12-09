@@ -40,7 +40,7 @@ const ImageCarousel = ({ images }) => {
   });
 
   return (
-    <div className="w-full flex flex-col items-center md:w-full md:mt-0 mt-0">
+    <div className="w-[100vw] md:w-full lg:w-full flex flex-col items-center md:w-full md:mt-0 mt-0">
       {/* Main Image Display */}
       <div className="relative w-full flex justify-center">
       <img

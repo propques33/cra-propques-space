@@ -3,10 +3,45 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Info from "./components/Info";
+import CookieManager from "./utils/cookieManager.jsx";
+import CookieConsent from "./components/CookieConsent.jsx";
 import Adarsh from "./components/Adarsh";
 import ThankYou from "./components/ThankYou";
 import Whatsapp from './assets/WhatsApp.svg'
+
+import Privacy from "./components/Privacy";
+import TermsAndConditions from "./components/TermsAndConditions";
+
 const App = () => {
+  useEffect(() => {
+    // Set user data
+    CookieManager.setCookie("username", "John Doe");
+    CookieManager.setCookie("location", "Bangalore");
+    CookieManager.setCookie("gender", "Male");
+    CookieManager.setCookie("lastSearch", "Coworking spaces in Bangalore");
+    CookieManager.setCookie(
+      "favorites",
+      JSON.stringify(["Space A", "Space B"])
+    );
+    CookieManager.setCookie("preferences", JSON.stringify(["Tech", "Gaming"]));
+
+    // Retrieve user data
+    const username = CookieManager.getCookie("username");
+    const location = CookieManager.getCookie("location");
+    const gender = CookieManager.getCookie("gender");
+    const lastSearch = CookieManager.getCookie("lastSearch");
+    const favorites = JSON.parse(CookieManager.getCookie("favorites"));
+    const preferences = JSON.parse(CookieManager.getCookie("preferences"));
+
+   //  console.log({
+   //    username,
+   //    location,
+   //    gender,
+   //    lastSearch,
+   //    favorites,
+   //    preferences,
+   //  });
+  }, []);
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Controls popup visibility
   const [animatePopup, setAnimatePopup] = useState(false); // Controls animation
   const [isMobile, setIsMobile] = useState(false); // Detect if the device is mobile
@@ -43,7 +78,10 @@ const App = () => {
         setIsPopupOpen(true);
         setHasPopupShown(true); // Ensure popup is only shown once on load
       }
-    }, 3000);
+    }, 10000);
+
+
+    
 
     // Cleanup event listener and timeout on component unmount
     return () => {
@@ -63,13 +101,13 @@ const App = () => {
   <img
     src={Whatsapp}
     alt="Click to Download"
-    className="fixed z-[100000000000] h-20 bottom-5 right-5 cursor-pointer"
+    className="fixed z-[10000000] h-20 bottom-1 left-5 cursor-pointer"
   />
 </a>
-
-  
-      
+   
       <Navbar />
+      <CookieConsent />
+
       <Routes>
         <Route
           path="/"
@@ -105,6 +143,9 @@ const App = () => {
           }
         />
         <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+
         
       </Routes>
       <Footer />

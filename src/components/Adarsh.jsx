@@ -13,6 +13,7 @@ const Adarsh = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [mobileError, setMobileError] = useState(""); // Error message for mobile number
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false); // State for checkbox
 
   const validateMobile = (mobile) => {
     if (!/^\d{10}$/.test(mobile)) {
@@ -29,6 +30,12 @@ const Adarsh = () => {
 
     // Validate mobile number
     if (!validateMobile(mobile)) {
+      return;
+    }
+
+    // Ensure checkbox is checked
+    if (!isCheckboxChecked) {
+      alert("Please agree to the privacy policy to proceed.");
       return;
     }
 
@@ -64,6 +71,7 @@ const Adarsh = () => {
       setEmail("");
       setMobile("");
       setArea(""); // Reset area
+      setIsCheckboxChecked(false); // Reset checkbox
       navigate("/thank-you");
     } catch (error) {
       console.error("Error submitting the form:", error);
@@ -107,27 +115,27 @@ const Adarsh = () => {
 
       {/* Form Section */}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <label className="text-sm font-medium text-gray-700">
-  Name
-  <input
-    type="text"
-    placeholder="Enter Your Name"
-    value={name}
-    onChange={(e) => {
-      const value = e.target.value;
-      if (/^[a-zA-Z\s]*$/.test(value)) {
-        setName(value); // Update state only if input is valid
-      }
-    }}
-    className="mt-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-    required
-  />
-  {!/^[a-zA-Z\s]+$/.test(name) && name !== "" && (
-    <span className="text-red-500 text-sm">
-      Please enter a valid name (only alphabets and spaces).
-    </span>
-  )}
-</label>
+        <label className="text-sm font-medium text-gray-700">
+          Name
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            value={name}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^[a-zA-Z\s]*$/.test(value)) {
+                setName(value); // Update state only if input is valid
+              }
+            }}
+            className="mt-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            required
+          />
+          {!/^[a-zA-Z\s]+$/.test(name) && name !== "" && (
+            <span className="text-red-500 text-sm">
+              Please enter a valid name (only alphabets and spaces).
+            </span>
+          )}
+        </label>
 
         <label className="text-sm font-medium text-gray-700">
           Company/Organization Name
@@ -158,8 +166,6 @@ const Adarsh = () => {
         <label className="text-sm font-medium text-gray-700">
           Area (in sq. ft.)
           <select
-            name=""
-            id=""
             value={area}
             onChange={(e) => setArea(e.target.value)}
             className="mt-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
@@ -172,24 +178,42 @@ const Adarsh = () => {
             <option value="30000+">30000+ (Sq. Ft.)</option>
           </select>
         </label>
-        <button
-  type="submit"
-  className={`bg-blue-500 text-white px-4 py-2 shadow ${
-    isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
-  } transition duration-300`}
-  disabled={isLoading}
-  onClick={() => {
-    if (!isLoading) {
-      const downloadLink = document.createElement("a");
-      downloadLink.href = "https://drive.usercontent.google.com/u/0/uc?id=1Ihk5LQPdR48qBjySgBSzBZk3L-rV6eqC&export=download";
-      downloadLink.download = true; // Optional, forces download behavior
-      downloadLink.click();
-    }
-  }}
->
-  {isLoading ? "Submitting..." : "Make an Appointment"}
-</button>
 
+        {/* Checkbox */}
+        <label className="fle items-center text-sm">
+          <input
+            type="checkbox"
+            checked={isCheckboxChecked}
+            onChange={(e) => setIsCheckboxChecked(e.target.checked)}
+            className="mr-2"
+            required
+          />
+          I am happy for 
+          
+          <a href="https://propques.space/" className="text-blue-500"> propques.space </a>
+
+           to contact me via text/SMS.{" "} By selecting this you agree to our privacy policy. {" "}
+
+           
+          <a
+            href="/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            See policy
+          </a>
+        </label>
+
+        <button
+          type="submit"
+          className={`bg-blue-500 text-white px-4 py-2 shadow ${
+            isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+          } transition duration-300`}
+          disabled={isLoading}
+        >
+          {isLoading ? "Submitting..." : "Make an Appointment"}
+        </button>
       </form>
 
       {isSuccess && (
@@ -202,5 +226,3 @@ const Adarsh = () => {
 };
 
 export default Adarsh;
-
-

@@ -12,23 +12,12 @@ const AreaCalculation = () => {
       {
         title: "Number of Floors",
         icon: <FaBuilding className="text-green-500" />,
-        value: "Ground+3 (2 Side Entrance)",
+        value: "Ground+3 ",
       },
       { title: "Number of Entries", icon: <FaRoad className="text-red-500" />, value: "2" },
       { title: "Fire Exits", icon: <FaFireExtinguisher className="text-yellow-500" />, value: "1" },
     ],
-    "Ground Coverage": [
-      {
-        title: "Allowed Ground Coverage",
-        icon: <FaBuilding className="text-purple-500" />,
-        value: "55% / 6,824.60 SFT",
-      },
-      {
-        title: "Achieved Ground Coverage",
-        icon: <FaBuilding className="text-orange-500" />,
-        value: "630.9 M² / 6,791.77 SFT",
-      },
-    ],
+    
     "Parkings": [
       { title: "Car Parkings", icon: <FaParking className="text-indigo-500" />, value: "24" },
       { title: "Bike Parkings", icon: <FaParking className="text-pink-500" />, value: "22" },
