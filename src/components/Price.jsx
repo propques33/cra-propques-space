@@ -18,7 +18,7 @@ const Price = () => {
       {/* Details Section */}
       <div className="flex flex-wrap justify-between mt-4">
         <div className="text-center flex flex-col w-1/2 md:w-auto mb-4">
-          <span className="text-xl font-semibold text-gray-800">₹56/Sq.Ft.</span>
+          <span className="text-xl font-semibold text-gray-800">₹63/Sq.Ft.</span>
           <span className="text-base text-zinc-500 font-semibold">Price</span>
         </div>
         <div className="text-center flex flex-col w-1/2 md:w-auto mb-4">

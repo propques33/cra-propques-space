@@ -83,7 +83,7 @@ const Adarsh = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+      <h2 className="text-2xl font-semibold z-[1000000000] text-gray-800 mb-2">
         Cocoon By Jaipuria
       </h2>
       <p className="flex items-center text-sm text-gray-600 md:mb-4 mb-3 gap-2 capitalize">

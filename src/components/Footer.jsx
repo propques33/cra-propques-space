@@ -121,10 +121,12 @@ const Footer = () => {
             <a href="/sitemap.xml" target="_blank"  className="hover:underline ml-2">
               Sitemap
             </a>{" "}
-            |<span className="ml-2">Copyright © 2024</span>
+            |<span className="ml-2">Copyright © 2025</span>
           </p>
         </div>
       </div>
+     <h2 className="w-full text-center"> Powered By <a href="https://propques.com/">Propques Services Pvt. Ltd.
+     </a></h2>
     </footer>
   );
 };

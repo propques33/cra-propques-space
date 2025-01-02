@@ -39,15 +39,15 @@ const CookieConsent = () => {
   return (
     <>
       {blurBackground && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[1000000000000] transition-opacity duration-300"></div>
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[10000000000] transition-opacity duration-300"></div>
       )}
       {showBanner && (
         <div
-          className={`cookie-banner z-[10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000] fixed bottom-0 md:w-96 w-full bg-gray-800 text-white p-4 flex flex-col items-center justify-between shadow-md transition-transform duration-300 ${
+          className={`cookie-banner z-[100000000000] fixed bottom-0 md:w-96 w-full bg-gray-800 text-white p-4 flex flex-col items-center justify-between shadow-md transition-transform duration-300 ${
             animateBanner ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
           }`}
         >
-          <div className="flex flex-col items-center gap-4 z-[10000000000000000000000000000000000000000000]">
+          <div className="flex flex-col items-center gap-4 z-[1000]">
             <p className="text-sm md:text-base text-center">
               We use cookies to enhance your experience. By continuing, you agree
               to our use of cookies.

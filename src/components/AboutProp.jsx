@@ -11,6 +11,7 @@ const AboutProperty = () => {
     <div className="container px-2 md:px-0 mt-6 md:w-full w-[100vw]">
       <h2 className="text-xl md:text-2xl font-semibold  flex gap-2 ">
         Why Choose Cocoon By Jaipuria? 
+        <DownloadButton />
       </h2>
       <p className="text-xs md:text-base leading-relaxed text-justify my-4">
       Looking for a premium building for lease in BTM Layout to establish your company headquarters, coworking space, or retail showroom? 

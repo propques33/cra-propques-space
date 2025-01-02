@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/weblogo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,15 +28,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky p-4 z-40 w-full top-0  py-5 transition-colors ${
-        isScrolled ? "bg-white " : "bg-white "
+      className={`sticky z-10 p-4 w-full top-0  py-5 transition-colors   ${
+        isScrolled ? "bg-white shadow-md" : " bg-white"
       }`}
     >
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo in the center */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
-          <Link to="/" className="text-white text-2xl font-bold">
-            <img src={logo} alt="Logo" className=" " loading="lazy"  />
+          <Link to="/" className="text-white text-2xl  font-bold">
+            <img src={logo} alt="Logo" className="h-10 " loading="lazy"  />
           </Link>
         </div>
 

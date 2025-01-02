@@ -92,16 +92,29 @@ const App = () => {
 
   return (
     
-    <div className="md:w-full w-[100vw]">
+    <div className="md:w-full w-[100vw] ">
       <a
   href="https://wa.me/9044895895"
   target="_blank"
   rel="noopener noreferrer"
+  className="md:block lg:block hidden"
 >
   <img
     src={Whatsapp}
     alt="Click to Download"
-    className="fixed z-[10000000] h-20 bottom-1 left-5 cursor-pointer"
+    className="fixed z-40 h-16 bottom-1 right-5 cursor-pointer"
+  />
+</a>
+      <a
+  href="https://wa.me/9044895895"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="md:hidden lg:hidden block"
+>
+  <img
+    src={Whatsapp}
+    alt="Click to Download"
+    className="fixed  h-16 bottom-1 left-5 cursor-pointer"
   />
 </a>
    
@@ -116,7 +129,7 @@ const App = () => {
               {/* Popup Logic */}
               {isPopupOpen && (
                 <div
-                  className={`fixed md:hidden  inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10000000] transition-all duration-1500 ${
+                  className={`fixed md:hidden  inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[10] transition-all duration-1500 ${
                     animatePopup ? "opacity-0 scale-90" : "opacity-100 scale-100"
                   }`}
                 >
@@ -149,7 +162,7 @@ const App = () => {
         
       </Routes>
       <Footer />
-      <div className="flex md:hidden lg:hidden justify-center right-20 fixed  bottom-16">
+      <div className="flex md:hidden lg:hidden justify-center right-20 fixed   bottom-16">
                 <button
                   onClick={handleBookAppointment}
                   className="bg-blue-500 text-sm  absolute text-white px-6  py-2 rounded shadow   "
